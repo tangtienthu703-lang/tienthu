@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberTech PC & GTA5VN AI Hub | Tối Ưu PC & PvP Master</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#080811',
+                            darker: '#0d0e1b',
+                            card: '#121324',
+                            border: '#1f2347',
+                            cyan: '#00f0ff',
+                            pink: '#ff007f',
+                            purple: '#9d00ff',
+                            yellow: '#ffe600',
+                            green: '#00ff66'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 15px rgba(0, 240, 255, 0.4), 0 0 30px rgba(0, 240, 255, 0.2)',
+                        'neon-pink': '0 0 15px rgba(255, 0, 127, 0.4), 0 0 30px rgba(255, 0, 127, 0.2)',
+                        'neon-purple': '0 0 15px rgba(157, 0, 255, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080811;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2347;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+
+        /* Cyberpunk Glow Animation */
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.6)); }
+            50% { filter: drop-shadow(0 0 18px rgba(255, 0, 127, 0.8)); }
+        }
+        .cyber-glow-anim {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+
+        /* Cyber grid background */
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(31, 35, 71, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(31, 35, 71, 0.3) 1px, transparent 1px);
+        }
+
+        .clip-cyber-btn {
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+        }
+    </style>
+</head>
+<body class="bg-cyber-black text-slate-200 font-sans min-h-screen selection:bg-cyber-cyan selection:text-black cyber-grid">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-cyber-darker/90 backdrop-blur-md border-b border-cyber-border/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-11 h-11 bg-gradient-to-br from-cyber-cyan to-cyber-pink p-[2px] rounded-lg shadow-neon-cyan">
+                        <div class="w-full h-full bg-cyber-black rounded-[6px] flex items-center justify-center">
+                            <i class="fa-solid fa-microchip text-cyber-cyan text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-orbitron text-xl sm:text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-white to-cyber-pink">
+                            CYBER<span class="text-cyber-cyan">TECH</span>
+                        </span>
+                        <span class="block text-[10px] font-orbitron text-cyber-pink font-semibold tracking-widest uppercase">GTA5VN AI HUB</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Tabs -->
+                <nav class="hidden xl:flex items-center gap-1 font-rajdhani text-base font-bold uppercase tracking-wider">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-cyan hover:bg-cyber-card transition">Trang Chủ</button>
+                    <button onclick="switchTab('pc-builder')" id="nav-pc-builder" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-cyan hover:bg-cyber-card transition">AI Build PC</button>
+                    <button onclick="switchTab('prebuilt')" id="nav-prebuilt" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-cyan hover:bg-cyber-card transition">PC Dựng Sẵn</button>
+                    <button onclick="switchTab('graphics')" id="nav-graphics" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-cyan hover:bg-cyber-card transition text-cyber-yellow"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Mod Graphics</button>
+                    <button onclick="switchTab('pvp-trainer')" id="nav-pvp-trainer" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-pink hover:bg-cyber-card transition text-cyber-pink"><i class="fa-solid fa-gamepad mr-1"></i>PvP Trainer</button>
+                    <button onclick="switchTab('win-tuning')" id="nav-win-tuning" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-cyan hover:bg-cyber-card transition"><i class="fa-solid fa-sliders mr-1"></i>Tối Ưu Win</button>
+                    <button onclick="switchTab('gta-guide')" id="nav-gta-guide" class="nav-btn px-3 py-2 rounded-md hover:text-cyber-cyan hover:bg-cyber-card transition">Bí Kíp GTA</button>
+                </nav>
+
+                <!-- Action Buttons & Discord Link -->
+                <div class="flex items-center gap-3">
+                    <!-- Discord Button -->
+                    <a href="https://discord.gg/zXXNz5qrA7" target="_blank" rel="noopener noreferrer" 
+                       class="clip-cyber-btn bg-indigo-600 hover:bg-indigo-500 text-white font-orbitron text-xs sm:text-sm font-bold px-4 py-2.5 flex items-center gap-2 shadow-lg shadow-indigo-500/30 transition-all hover:scale-105">
+                        <i class="fa-brands fa-discord text-lg"></i>
+                        <span class="hidden sm:inline">JOIN DISCORD</span>
+                    </a>
+
+                    <!-- Cart Button -->
+                    <button onclick="toggleCartModal()" class="relative p-2.5 bg-cyber-card border border-cyber-border rounded-lg text-cyber-cyan hover:border-cyber-cyan transition">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-cyber-pink text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border border-cyber-black">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Trigger -->
+                    <button onclick="toggleMobileMenu()" class="xl:hidden p-2.5 bg-cyber-card border border-cyber-border rounded-lg text-slate-300">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-cyber-darker border-b border-cyber-border px-4 pt-2 pb-6 space-y-2 font-rajdhani font-bold text-lg">
+            <button onclick="switchTab('home')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card text-cyber-cyan">Trang Chủ</button>
+            <button onclick="switchTab('pc-builder')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card">AI Build PC</button>
+            <button onclick="switchTab('prebuilt')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card">PC Dựng Sẵn</button>
+            <button onclick="switchTab('graphics')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card text-cyber-yellow"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Mod Graphics / ENB</button>
+            <button onclick="switchTab('pvp-trainer')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card text-cyber-pink"><i class="fa-solid fa-gamepad mr-2"></i>PvP Trainer - Chém Nách Thái</button>
+            <button onclick="switchTab('win-tuning')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card text-cyber-cyan"><i class="fa-solid fa-sliders mr-2"></i>Tối Ưu Windows & Driver</button>
+            <button onclick="switchTab('gta-guide')" class="block w-full text-left py-2 px-3 rounded hover:bg-cyber-card">Bí Kíp Kỹ Năng GTA5VN</button>
+            <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="block w-full text-center py-3 rounded bg-indigo-600 text-white font-orbitron text-sm font-bold mt-4">
+                <i class="fa-brands fa-discord mr-2"></i>DISCORD CỘNG ĐỒNG
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER FOR TABS -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TAB 1: HOME PAGE -->
+        <section id="tab-home" class="tab-content space-y-12">
+            <!-- Hero Banner -->
+            <div class="relative rounded-2xl overflow-hidden border border-cyber-border bg-gradient-to-r from-cyber-card via-cyber-darker to-cyber-black p-8 sm:p-12 md:p-16">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#00f0ff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative z-10 max-w-3xl space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyber-pink/20 border border-cyber-pink/50 text-cyber-pink text-xs font-orbitron tracking-widest uppercase">
+                        <i class="fa-solid fa-bolt"></i> CyberTech GTA5VN Next-Gen Hub 4.0
+                    </div>
+                    <h1 class="font-orbitron text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+                        TỐI ƯU CẤU HÌNH & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-pink">BÁ CHỦ PVP GTA5VN</span>
+                    </h1>
+                    <p class="text-slate-400 font-rajdhani text-lg sm:text-xl font-medium leading-relaxed">
+                        Hệ thống thông minh hỗ trợ Build PC chuẩn từng Watt, hướng dẫn cài ENB Graphics đẹp rực rỡ 100+ FPS, cùng Phòng Tập Phản Xạ Phím Combo **Chém Nách Thái** độc quyền.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('pc-builder')" class="clip-cyber-btn bg-cyber-cyan hover:bg-cyan-400 text-black font-orbitron font-bold px-6 py-3.5 text-sm flex items-center gap-2 transition hover:shadow-neon-cyan">
+                            <i class="fa-solid fa-microchip text-base"></i> THỬ AI BUILD PC NGAY
+                        </button>
+                        <button onclick="switchTab('pvp-trainer')" class="clip-cyber-btn bg-cyber-pink hover:bg-pink-600 text-white font-orbitron font-bold px-6 py-3.5 text-sm flex items-center gap-2 transition hover:shadow-neon-pink">
+                            <i class="fa-solid fa-crosshairs text-base"></i> PHÒNG TẬP COMBAT PVP
+                        </button>
+                        <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="clip-cyber-btn bg-indigo-600 hover:bg-indigo-500 text-white font-orbitron font-bold px-6 py-3.5 text-sm flex items-center gap-2 transition">
+                            <i class="fa-brands fa-discord text-base"></i> THAM GIA DISCORD
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Quick Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div onclick="switchTab('graphics')" class="cursor-pointer group p-6 rounded-xl bg-cyber-card border border-cyber-border hover:border-cyber-yellow transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                    <div class="w-12 h-12 rounded-lg bg-cyber-yellow/10 border border-cyber-yellow/40 flex items-center justify-center text-cyber-yellow text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-xl text-white mb-2 group-hover:text-cyber-yellow transition">Mod Graphics & ENB</h3>
+                    <p class="text-slate-400 text-sm font-rajdhani text-base">Tối ưu hiệu ứng đồ họa 4K, đổ bóng, phản chiếu cho GTA5VN mà không ảnh hưởng tới quy định server.</p>
+                </div>
+                <!-- Card 2 -->
+                <div onclick="switchTab('pvp-trainer')" class="cursor-pointer group p-6 rounded-xl bg-cyber-card border border-cyber-border hover:border-cyber-pink transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                    <div class="w-12 h-12 rounded-lg bg-cyber-pink/10 border border-cyber-pink/40 flex items-center justify-center text-cyber-pink text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-xl text-white mb-2 group-hover:text-cyber-pink transition">PvP Combo Simulator</h3>
+                    <p class="text-slate-400 text-sm font-rajdhani text-base">Rèn luyện tốc độ bấm phím "Chém Nách Thái", đo Input Delay (ms) và nâng trình combat cận chiến.</p>
+                </div>
+                <!-- Card 3 -->
+                <div onclick="switchTab('win-tuning')" class="cursor-pointer group p-6 rounded-xl bg-cyber-card border border-cyber-border hover:border-cyber-cyan transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                    <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/40 flex items-center justify-center text-cyber-cyan text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-xl text-white mb-2 group-hover:text-cyber-cyan transition">Tối Ưu Win & Driver</h3>
+                    <p class="text-slate-400 text-sm font-rajdhani text-base">Bộ tinh chỉnh NVIDIA Control Panel, Windows Registry giúp ổn định Ping và giảm giật lag triệt để.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: AI BUILD PC -->
+        <section id="tab-pc-builder" class="tab-content hidden space-y-8">
+            <div class="border-b border-cyber-border pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white uppercase"><i class="fa-solid fa-microchip text-cyber-cyan mr-2"></i>Công Cụ AI Build PC Smart</h2>
+                    <p class="text-slate-400 font-rajdhani text-base">Tự chọn linh kiện, kiểm tra xung đột Watt/Socket/RAM & ước tính FPS GTA5VN tức thì.</p>
+                </div>
+                <button onclick="resetBuilder()" class="px-4 py-2 rounded bg-cyber-card border border-cyber-border hover:border-cyber-pink text-xs font-orbitron text-slate-300 hover:text-cyber-pink transition">
+                    <i class="fa-solid fa-rotate-left mr-1"></i> XÓA LÀM LẠI
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Selection Panel (2 cols) -->
+                <div class="lg:col-span-2 space-y-4">
+                    <!-- Component Selectors -->
+                    <div id="components-selector-list" class="space-y-4">
+                        <!-- Component items injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Analysis Summary Panel (1 col) -->
+                <div class="space-y-6">
+                    <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 sticky top-28 space-y-6 shadow-xl">
+                        <h3 class="font-orbitron text-lg font-bold text-white border-b border-cyber-border pb-3 flex items-center justify-between">
+                            <span>BẢO CÁO CẤU HÌNH</span>
+                            <span class="text-xs text-cyber-cyan font-normal uppercase">AI Realtime</span>
+                        </h3>
+
+                        <!-- Cost Total -->
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-orbitron">Tổng Chi Phí:</span>
+                            <div id="total-price" class="font-orbitron text-3xl font-black text-cyber-green">0 VNĐ</div>
+                        </div>
+
+                        <!-- FPS Estimate -->
+                        <div class="bg-cyber-darker p-4 rounded-lg border border-cyber-border space-y-2">
+                            <div class="flex items-center justify-between text-xs font-orbitron">
+                                <span class="text-slate-300">DỰ BÁO FPS GTA5VN (1080p High)</span>
+                                <span id="fps-badge" class="font-bold text-cyber-yellow text-base">0 FPS</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                <div id="fps-bar" class="bg-gradient-to-r from-cyber-cyan to-cyber-green h-full w-0 transition-all duration-500"></div>
+                            </div>
+                        </div>
+
+                        <!-- Compatibility Checklist -->
+                        <div class="space-y-3">
+                            <span class="text-xs font-orbitron text-slate-400 uppercase">Kiểm Tra Tương Thích:</span>
+                            <div id="compat-socket" class="flex items-center justify-between text-xs font-rajdhani p-2.5 rounded bg-cyber-darker text-slate-400">
+                                <span><i class="fa-solid fa-plug mr-2"></i>Socket CPU & Mainboard:</span>
+                                <span class="font-bold">Chưa chọn</span>
+                            </div>
+                            <div id="compat-ram" class="flex items-center justify-between text-xs font-rajdhani p-2.5 rounded bg-cyber-darker text-slate-400">
+                                <span><i class="fa-solid fa-memory mr-2"></i>Chuẩn RAM (DDR4/DDR5):</span>
+                                <span class="font-bold">Chưa chọn</span>
+                            </div>
+                            <div id="compat-power" class="flex items-center justify-between text-xs font-rajdhani p-2.5 rounded bg-cyber-darker text-slate-400">
+                                <span><i class="fa-solid fa-bolt mr-2 font-bold"></i>Công Suất Nguồn (PSU):</span>
+                                <span class="font-bold">0W / 0W</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addCurrentBuildToCart()" class="w-full clip-cyber-btn bg-cyber-cyan hover:bg-cyan-400 text-black font-orbitron font-bold py-3 text-sm tracking-wider transition hover:shadow-neon-cyan">
+                            <i class="fa-solid fa-cart-plus mr-2"></i>THÊM CẤU HÌNH VÀO GIỎ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: PREBUILT PCS -->
+        <section id="tab-prebuilt" class="tab-content hidden space-y-8">
+            <div>
+                <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white uppercase"><i class="fa-solid fa-desktop text-cyber-pink mr-2"></i>Dàn PC Dựng Sẵn Optimization GTA5VN</h2>
+                <p class="text-slate-400 font-rajdhani text-base">Thiết kế tối ưu hiệu năng/giá thành, sẵn sàng chiến GTA5VN Roleplay mượt mà.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="prebuilt-grid">
+                <!-- Prebuilt cards dynamically generated -->
+            </div>
+        </section>
+
+        <!-- TAB 4: FEATURE 1 - MOD GRAPHICS & ENB -->
+        <section id="tab-graphics" class="tab-content hidden space-y-8">
+            <div class="border-b border-cyber-border pb-4">
+                <span class="text-cyber-yellow font-orbitron text-xs font-semibold uppercase tracking-widest"><i class="fa-solid fa-star mr-1"></i>Feature Highlight 1</span>
+                <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white uppercase mt-1">
+                    <i class="fa-solid fa-wand-magic-sparkles text-cyber-yellow mr-2"></i>Hướng Dẫn Tối Ưu Graphics / ENB / ReShade
+                </h2>
+                <p class="text-slate-400 font-rajdhani text-base">Cài mod đồ họa siêu đẹp 4K, chi tiết ánh sáng & bóng thực tế mà vẫn giữ ổn định 100+ FPS, an toàn tuyệt đối với quy định server GTA5VN.</p>
+            </div>
+
+            <!-- Mod Presets Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Preset 1 -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4 hover:border-cyber-yellow transition">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 rounded bg-yellow-500/20 text-cyber-yellow text-xs font-orbitron font-bold">LIGHTWEIGHT PRESET</span>
+                        <span class="text-xs text-slate-400 font-rajdhani">Tác động FPS: -3%</span>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-lg text-white">NVE Light & QuantV Performance</h3>
+                    <ul class="text-sm font-rajdhani text-slate-300 space-y-2 list-disc list-inside">
+                        <li>Tăng độ trong trẻo của thời tiết & đường xá.</li>
+                        <li>Khử mờ xa (Depth of Field), tăng chi tiết vết bánh xe.</li>
+                        <li>Tối ưu cho máy cấu hình Tầm Trung (GTX 1660 / RTX 3050).</li>
+                    </ul>
+                    <div class="pt-2 border-t border-cyber-border flex justify-between items-center text-xs font-orbitron">
+                        <span class="text-cyber-green font-bold"><i class="fa-solid fa-shield-halved mr-1"></i>SAFE FOR GTA5VN</span>
+                        <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="text-cyber-cyan hover:underline">Tải trên Discord <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Preset 2 -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4 hover:border-cyber-cyan transition">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyber-cyan text-xs font-orbitron font-bold">HYBRID COMBAT ENB</span>
+                        <span class="text-xs text-slate-400 font-rajdhani">Tác động FPS: -7%</span>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-lg text-white">ReShade PvP Sharpen & Bloom</h3>
+                    <ul class="text-sm font-rajdhani text-slate-300 space-y-2 list-disc list-inside">
+                        <li>Tăng độ nét nhân vật & hồng tâm ở khoảng cách xa.</li>
+                        <li>Điều chỉnh tone màu Cyberpunk dạ quang rực rỡ.</li>
+                        <li>Giảm hiệu ứng chói sáng từ đèn pha xe khi đêm xuống.</li>
+                    </ul>
+                    <div class="pt-2 border-t border-cyber-border flex justify-between items-center text-xs font-orbitron">
+                        <span class="text-cyber-green font-bold"><i class="fa-solid fa-shield-halved mr-1"></i>SAFE FOR GTA5VN</span>
+                        <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="text-cyber-cyan hover:underline">Tải trên Discord <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Preset 3 -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4 hover:border-cyber-pink transition">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 rounded bg-pink-500/20 text-cyber-pink text-xs font-orbitron font-bold">ULTRA RAY-TRACING</span>
+                        <span class="text-xs text-slate-400 font-rajdhani">Tác động FPS: -15%</span>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-lg text-white">4K Photorealism ENB Preset</h3>
+                    <ul class="text-sm font-rajdhani text-slate-300 space-y-2 list-disc list-inside">
+                        <li>Phản chiếu vũng nước mưa & kính xe 3D chân thực.</li>
+                        <li>Ánh sáng mặt trời xuyên qua tán cây (Godrays).</li>
+                        <li>Dành riêng cho RTX 3070 / RTX 4070 trở lên.</li>
+                    </ul>
+                    <div class="pt-2 border-t border-cyber-border flex justify-between items-center text-xs font-orbitron">
+                        <span class="text-cyber-green font-bold"><i class="fa-solid fa-shield-halved mr-1"></i>SAFE FOR GTA5VN</span>
+                        <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="text-cyber-cyan hover:underline">Tải trên Discord <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installation Steps Guide -->
+            <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 sm:p-8 space-y-6">
+                <h3 class="font-orbitron text-xl font-bold text-white uppercase border-b border-cyber-border pb-3">
+                    <i class="fa-solid fa-list-check text-cyber-cyan mr-2"></i>Quy Trình Cài Đặt Chuẩn Khuyên Dùng
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 font-rajdhani">
+                    <div class="p-4 bg-cyber-darker rounded-lg border border-cyber-border">
+                        <span class="font-orbitron font-black text-2xl text-cyber-cyan">01</span>
+                        <h4 class="font-bold text-lg text-white mt-1">Sao lưu thư mục</h4>
+                        <p class="text-slate-400 text-sm mt-1">Backup thư mục FiveM/GTA V nguyên bản trước khi chép mod để tránh lỗi game.</p>
+                    </div>
+                    <div class="p-4 bg-cyber-darker rounded-lg border border-cyber-border">
+                        <span class="font-orbitron font-black text-2xl text-cyber-cyan">02</span>
+                        <h4 class="font-bold text-lg text-white mt-1">Cài d3d11.dll</h4>
+                        <p class="text-slate-400 text-sm mt-1">Copy các file ReShade/ENB Core vào thư mục `FiveM Application Data/plugins`.</p>
+                    </div>
+                    <div class="p-4 bg-cyber-darker rounded-lg border border-cyber-border">
+                        <span class="font-orbitron font-black text-2xl text-cyber-cyan">03</span>
+                        <h4 class="font-bold text-lg text-white mt-1">Chỉnh Setting In-Game</h4>
+                        <p class="text-slate-400 text-sm mt-1">Tắt Motion Blur, đặt DirectX 11, bật Anisotropic Filtering 16x.</p>
+                    </div>
+                    <div class="p-4 bg-cyber-darker rounded-lg border border-cyber-border">
+                        <span class="font-orbitron font-black text-2xl text-cyber-cyan">04</span>
+                        <h4 class="font-bold text-lg text-white mt-1">Khởi chạy & Tận hưởng</h4>
+                        <p class="text-slate-400 text-sm mt-1">Ấn phím `HOME` trong game để mở menu ReShade và tùy biến preset theo ý thích.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: FEATURE 2 - PVP KEYBINDING TRAINER -->
+        <section id="tab-pvp-trainer" class="tab-content hidden space-y-8">
+            <div class="border-b border-cyber-border pb-4">
+                <span class="text-cyber-pink font-orbitron text-xs font-semibold uppercase tracking-widest"><i class="fa-solid fa-gamepad mr-1"></i>Feature Highlight 2</span>
+                <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white uppercase mt-1">
+                    <i class="fa-solid fa-crosshairs text-cyber-pink mr-2"></i>Bộ Mô Phỏng Phím Bấm PvP (Keybinding Trainer)
+                </h2>
+                <p class="text-slate-400 font-rajdhani text-base">Luyện tập bấm phím phản xạ combo **Chém Nách Thái**, đo tốc độ phản xạ (Input Latency ms) và chấm điểm kỹ năng combat.</p>
+            </div>
+
+            <!-- Simulator Interactive Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Keybinding Sandbox (2 cols) -->
+                <div class="lg:col-span-2 bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-6">
+                    <div class="flex justify-between items-center border-b border-cyber-border pb-3">
+                        <span class="font-orbitron font-bold text-lg text-white">COMBO SEQUENCE: <span class="text-cyber-pink">W + A/D + SHIFT + CLICK THÁI</span></span>
+                        <button onclick="resetTrainer()" class="px-3 py-1 bg-cyber-darker border border-cyber-border hover:border-cyber-pink text-xs font-orbitron text-slate-300">LÀM MỚI</button>
+                    </div>
+
+                    <!-- Visual Keyboard Display -->
+                    <div class="space-y-3 py-4">
+                        <div class="text-center text-xs font-orbitron text-slate-400">ẤN PHÍM TRÊN BÀN PHÍM THẬT CỦA BẠN ĐỂ THỰC HIỆN COMBO</div>
+                        <div class="flex justify-center gap-2">
+                            <div id="key-W" class="key-cap w-14 h-14 bg-cyber-darker border-2 border-cyber-border rounded-lg flex items-center justify-center font-orbitron font-bold text-xl text-slate-400 transition-all">W</div>
+                        </div>
+                        <div class="flex justify-center gap-2">
+                            <div id="key-A" class="key-cap w-14 h-14 bg-cyber-darker border-2 border-cyber-border rounded-lg flex items-center justify-center font-orbitron font-bold text-xl text-slate-400 transition-all">A</div>
+                            <div id="key-S" class="key-cap w-14 h-14 bg-cyber-darker border-2 border-cyber-border rounded-lg flex items-center justify-center font-orbitron font-bold text-xl text-slate-400 transition-all">S</div>
+                            <div id="key-D" class="key-cap w-14 h-14 bg-cyber-darker border-2 border-cyber-border rounded-lg flex items-center justify-center font-orbitron font-bold text-xl text-slate-400 transition-all">D</div>
+                        </div>
+                        <div class="flex justify-center gap-2 pt-2">
+                            <div id="key-Shift" class="key-cap px-4 h-12 bg-cyber-darker border-2 border-cyber-border rounded-lg flex items-center justify-center font-orbitron font-bold text-sm text-slate-400 transition-all">SHIFT (NÉ/DODGE)</div>
+                            <div id="key-Mouse" class="key-cap px-4 h-12 bg-cyber-darker border-2 border-cyber-border rounded-lg flex items-center justify-center font-orbitron font-bold text-sm text-slate-400 transition-all">L-CLICK (CHÉM)</div>
+                        </div>
+                    </div>
+
+                    <!-- Realtime Key Feed -->
+                    <div class="bg-cyber-darker p-4 rounded-lg border border-cyber-border space-y-2">
+                        <span class="text-xs font-orbitron text-slate-400">NHẬN DIỆN THAO TÁC PHÍM GẦN NHẤT:</span>
+                        <div id="key-log" class="font-orbitron text-cyber-cyan text-sm min-h-[24px]">Vui lòng nhấn phím W, A, S, D, Shift hoặc Click chuột...</div>
+                    </div>
+                </div>
+
+                <!-- Stats & Score Panel (1 col) -->
+                <div class="space-y-6">
+                    <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-6">
+                        <h3 class="font-orbitron font-bold text-lg text-white border-b border-cyber-border pb-3">THỐNG KÊ KỸ NĂNG</h3>
+                        
+                        <div>
+                            <span class="text-xs text-slate-400 font-orbitron uppercase">Tốc Độ Phản Xạ (Ms):</span>
+                            <div id="reaction-ms" class="font-orbitron text-3xl font-black text-cyber-cyan">-- ms</div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs text-slate-400 font-orbitron uppercase">Số Lần Combo Chuẩn:</span>
+                            <div id="combo-count" class="font-orbitron text-3xl font-black text-cyber-pink">0</div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs text-slate-400 font-orbitron uppercase">Xếp Hạng Kỹ Năng:</span>
+                            <div id="combat-rank" class="font-orbitron text-xl font-bold text-cyber-yellow mt-1">Tập Sự (Novice)</div>
+                        </div>
+
+                        <div class="p-3 bg-cyber-darker rounded border border-cyber-border text-xs font-rajdhani text-slate-300">
+                            <i class="fa-solid fa-lightbulb text-cyber-yellow mr-1"></i> Mẹo: Nhấn nhịp nhàng Shift + A/D để hủy hoạt ảnh thừa (Animation Cancel) giúp cú chém văng xa hơn.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: FEATURE 3 - WINDOWS & DRIVER TUNING -->
+        <section id="tab-win-tuning" class="tab-content hidden space-y-8">
+            <div class="border-b border-cyber-border pb-4">
+                <span class="text-cyber-cyan font-orbitron text-xs font-semibold uppercase tracking-widest"><i class="fa-solid fa-sliders mr-1"></i>Feature Highlight 3</span>
+                <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white uppercase mt-1">
+                    <i class="fa-solid fa-sliders text-cyber-cyan mr-2"></i>Tối Ưu Hóa Windows & Driver System
+                </h2>
+                <p class="text-slate-400 font-rajdhani text-base">Bộ tinh chỉnh Registry, NVIDIA Control Panel và Windows Game Mode giảm Input Lag, ổn định Ping cho GTA5VN.</p>
+            </div>
+
+            <!-- Tweak Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tweak 1: NVIDIA Control Panel -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded bg-green-500/20 text-cyber-green flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-orbitron font-bold text-lg text-white">NVIDIA Control Panel Optimization</h3>
+                            <span class="text-xs text-slate-400 font-rajdhani">Giảm độ trễ khung hình cực đại</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm font-rajdhani text-slate-300 space-y-2 list-disc list-inside bg-cyber-darker p-4 rounded-lg border border-cyber-border">
+                        <li><strong>Power Management Mode:</strong> Prefer Maximum Performance</li>
+                        <li><strong>Low Latency Mode:</strong> Ultra (Tối đa hóa tốc độ phản hồi phím)</li>
+                        <li><strong>Texture Filtering - Quality:</strong> High Performance</li>
+                        <li><strong>Max Frame Rate:</strong> Giới hạn bằng Tần số quét màn hình (ví dụ 144Hz/240Hz)</li>
+                    </ul>
+                </div>
+
+                <!-- Tweak 2: Windows Game Mode & Plan -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded bg-cyber-cyan/20 text-cyber-cyan flex items-center justify-center text-xl font-bold">
+                            <i class="fa-brands fa-windows"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-orbitron font-bold text-lg text-white">Windows Game Mode & Power Plan</h3>
+                            <span class="text-xs text-slate-400 font-rajdhani">Ưu tiên CPU Core cho GTA V</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm font-rajdhani text-slate-300 space-y-2 list-disc list-inside bg-cyber-darker p-4 rounded-lg border border-cyber-border">
+                        <li>Bật <strong>Windows Game Mode:</strong> Tự động tắt tác vụ nền thừa.</li>
+                        <li>Tắt <strong>Xbox Game Bar & Background Recording:</strong> Giải phóng 5-10% RAM.</li>
+                        <li>Kích hoạt chế độ nguồn <strong>Ultimate Performance:</strong> Ngăn CPU hạ xung tần.</li>
+                        <li>Bật <strong>Hardware-Accelerated GPU Scheduling (HAGS)</strong> trên Win 10/11.</li>
+                    </ul>
+                </div>
+
+                <!-- Tweak 3: Registry & TCP Latency Fix -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded bg-cyber-pink/20 text-cyber-pink flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-orbitron font-bold text-lg text-white">TCP NoDelay & Ping Stabilization</h3>
+                            <span class="text-xs text-slate-400 font-rajdhani">Tối ưu gói tin gửi lên Server FiveM</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm font-rajdhani text-slate-300 space-y-2 list-disc list-inside bg-cyber-darker p-4 rounded-lg border border-cyber-border">
+                        <li>Chỉnh sửa khóa Registry `TcpAckFrequency` = 1 để gửi gói tin tức thời.</li>
+                        <li>Chỉnh `TCPNoDelay` = 1 loại bỏ thuật toán Nagle làm trễ mạng.</li>
+                        <li>Sử dụng DNS Cloudflare (1.1.1.1 / 1.0.0.1) tối ưu tuyến truyền GTA5VN.</li>
+                    </ul>
+                </div>
+
+                <!-- Tweak 4: Discord Download Batch -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-brands fa-discord"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-orbitron font-bold text-lg text-white">Tải Script Auto Registry Fix</h3>
+                                <span class="text-xs text-slate-400 font-rajdhani">Tự động 1-Click tối ưu hóa</span>
+                            </div>
+                        </div>
+                        <p class="text-sm font-rajdhani text-slate-300">Tất cả file Registry tối ưu mạng, Regedit giảm mouse latency đều được chia sẻ miễn phí tại Server Discord cộng đồng CyberTech.</p>
+                    </div>
+                    <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="w-full clip-cyber-btn bg-indigo-600 hover:bg-indigo-500 text-white font-orbitron font-bold py-3 text-center text-xs tracking-wider transition">
+                        <i class="fa-brands fa-discord mr-2"></i>TRUY CẬP KÊNH TẢI TÀI LIỆU
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: GTA5VN GUIDES & COMBAT -->
+        <section id="tab-gta-guide" class="tab-content hidden space-y-8">
+            <div class="border-b border-cyber-border pb-4">
+                <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white uppercase"><i class="fa-solid fa-book-skull text-cyber-pink mr-2"></i>Bí Kíp & Kỹ Năng PvP GTA5VN</h2>
+                <p class="text-slate-400 font-rajdhani text-base">Tổng hợp mẹo di chuyển, combat và tuyệt kỹ **Chém Nách Thái** độc quyền.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Thai Armpit Slash Detail Guide -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4">
+                    <span class="px-2.5 py-1 rounded bg-cyber-pink/20 text-cyber-pink font-orbitron text-xs font-bold">SECRET MELEE PVP</span>
+                    <h3 class="font-orbitron font-bold text-xl text-white">Tuyệt Kỹ Chém Nách Thái (Thai Armpit Slash)</h3>
+                    <p class="text-slate-300 text-sm font-rajdhani">Cú chém bất ngờ khiến đối thủ không kịp bật animation đỡ gạt hoặc hồi máu.</p>
+                    
+                    <div class="space-y-3 font-rajdhani text-sm text-slate-300">
+                        <div class="flex items-start gap-3 p-3 bg-cyber-darker rounded border border-cyber-border">
+                            <span class="font-orbitron font-bold text-cyber-cyan">STEP 1</span>
+                            <div><strong>Khóa Mục Tiêu & Di Chuyển Chéo:</strong> Giữ `W` + `A` hoặc `D` tiếp cận góc nách đối phương.</div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-cyber-darker rounded border border-cyber-border">
+                            <span class="font-orbitron font-bold text-cyber-cyan">STEP 2</span>
+                            <div><strong>Nhấn Shift Dodge Hủy Hoạt Ảnh:</strong> Nhấp `Shift` ngắt nhịp chạy để đổi hướng vũ khí đột ngột.</div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-cyber-darker rounded border border-cyber-border">
+                            <span class="font-orbitron font-bold text-cyber-pink">STEP 3</span>
+                            <div><strong>Vào Góc Chém:</strong> Nhấp Chuột Trái đúng thời điểm góc nhìn mở rộng vào nách đối thủ.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drive-by & Combat Movement -->
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4">
+                    <span class="px-2.5 py-1 rounded bg-cyber-cyan/20 text-cyber-cyan font-orbitron text-xs font-bold">TACTICAL MOVEMENT</span>
+                    <h3 class="font-orbitron font-bold text-xl text-white">Mẹo Né Đạn & Cân Giao Tranh</h3>
+                    <p class="text-slate-300 text-sm font-rajdhani">Bí kíp sinh tồn trong các cuộc chiến gangter đông người tại GTA5VN.</p>
+                    
+                    <ul class="space-y-3 font-rajdhani text-sm text-slate-300">
+                        <li class="p-3 bg-cyber-darker rounded border border-cyber-border">
+                            <strong class="text-cyber-yellow">Mẹo Hồi Máu Nhanh:</strong> Vừa di chuyển vừa mở kho đồ để hủy hoạt ảnh uống nước/băng gạc.
+                        </li>
+                        <li class="p-3 bg-cyber-darker rounded border border-cyber-border">
+                            <strong class="text-cyber-yellow">Lái Xe Đấu Súng (Drive-by):</strong> Giữ góc nhìn APEX góc 45 độ để đạn không trúng kính chắn gió.
+                        </li>
+                        <li class="p-3 bg-cyber-darker rounded border border-cyber-border">
+                            <strong class="text-cyber-yellow">Góc Nhìn First Person (FPP):</strong> Chuyển FPP khi cận chiến trong nhà để tăng tốc độ xoay camera 20%.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING CYBER AI CHATBOT -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Toggle Button -->
+        <button onclick="toggleChat()" class="clip-cyber-btn bg-gradient-to-r from-cyber-cyan to-cyber-pink p-3.5 shadow-neon-pink hover:scale-110 transition duration-300">
+            <div class="flex items-center gap-2 font-orbitron font-bold text-black text-xs sm:text-sm">
+                <i class="fa-solid fa-robot text-lg"></i>
+                <span class="hidden sm:inline">CYBER AI ASSISTANT</span>
+            </div>
+        </button>
+
+        <!-- Chat Modal Window -->
+        <div id="chat-modal" class="hidden absolute bottom-16 right-0 w-[90vw] sm:w-[380px] bg-cyber-card border border-cyber-border rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            <!-- Chat Header -->
+            <div class="bg-cyber-darker p-3.5 border-b border-cyber-border flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-cyber-green animate-pulse"></div>
+                    <span class="font-orbitron text-xs font-bold text-white">CYBER ASSISTANT v4.0</span>
+                </div>
+                <button onclick="toggleChat()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Messages Body -->
+            <div id="chat-messages" class="p-4 h-72 overflow-y-auto space-y-3 font-rajdhani text-sm">
+                <div class="bg-cyber-darker p-3 rounded-lg border border-cyber-border text-slate-300">
+                    Xin chào! Tôi là AI Trợ Lý CyberTech. Bạn cần hỗ trợ tư vấn Build PC, hướng dẫn cài ENB Graphics hay mẹo combo **Chém Nách Thái**?
+                </div>
+            </div>
+
+            <!-- Chat Quick Actions -->
+            <div class="px-3 py-1.5 bg-cyber-darker border-t border-cyber-border flex gap-1 overflow-x-auto text-[10px] font-orbitron">
+                <button onclick="sendQuickMsg('Cách cài ReShade mượt?')" class="px-2 py-1 rounded bg-cyber-card border border-cyber-border text-cyber-yellow whitespace-nowrap">Mod ReShade</button>
+                <button onclick="sendQuickMsg('Mẹo Chém Nách Thái?')" class="px-2 py-1 rounded bg-cyber-card border border-cyber-border text-cyber-pink whitespace-nowrap">Chém Nách Thái</button>
+                <button onclick="sendQuickMsg('Discord hỗ trợ?')" class="px-2 py-1 rounded bg-cyber-card border border-cyber-border text-cyber-cyan whitespace-nowrap">Link Discord</button>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-3 bg-cyber-darker border-t border-cyber-border flex gap-2">
+                <input type="text" id="chat-input" placeholder="Hỏi AI bất kỳ điều gì..." 
+                       onkeypress="if(event.key === 'Enter') sendChatMessage()"
+                       class="w-full bg-cyber-black border border-cyber-border rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+                <button onclick="sendChatMessage()" class="px-3 bg-cyber-cyan text-black font-bold rounded text-xs"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cyber-card border border-cyber-border rounded-xl max-w-lg w-full p-6 space-y-6 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-cyber-border pb-3">
+                <h3 class="font-orbitron font-bold text-xl text-white"><i class="fa-solid fa-cart-shopping text-cyber-cyan mr-2"></i>GIỎ HÀNG CỦA BẠN</h3>
+                <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <div id="cart-items" class="space-y-3 max-h-60 overflow-y-auto">
+                <!-- Cart Items List -->
+            </div>
+
+            <div class="border-t border-cyber-border pt-4 flex items-center justify-between font-orbitron">
+                <span class="text-slate-400 text-sm">TỔNG THÀNH TIỀN:</span>
+                <span id="cart-total" class="text-2xl font-black text-cyber-green">0 VNĐ</span>
+            </div>
+
+            <button onclick="checkoutSimulated()" class="w-full clip-cyber-btn bg-cyber-pink hover:bg-pink-600 text-white font-orbitron font-bold py-3 text-sm tracking-wider transition">
+                THỦ TỤC THANH TOÁN GIẢ LẬP
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-cyber-darker border-t border-cyber-border mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-rajdhani text-slate-400">
+            <div>
+                © 2026 CYBERTECH PC & GTA5VN AI HUB. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://discord.gg/zXXNz5qrA7" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-bold font-orbitron flex items-center gap-1">
+                    <i class="fa-brands fa-discord text-base"></i> SERVER DISCORD CỘNG ĐỒNG
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- APPLICATION LOGIC JAVASCRIPT -->
+    <script>
+        /* --- HARDWARE DATABASE --- */
+        const COMPONENTS = {
+            cpu: [
+                { id: 'c1', name: 'Intel Core i5 12400F', socket: 'LGA1700', ramType: 'DDR4', power: 65, price: 2990000, fps: 110 },
+                { id: 'c2', name: 'Intel Core i5 13600K', socket: 'LGA1700', ramType: 'DDR5', power: 125, price: 7490000, fps: 165 },
+                { id: 'c3', name: 'AMD Ryzen 5 5600X', socket: 'AM4', ramType: 'DDR4', power: 65, price: 3490000, fps: 120 },
+                { id: 'c4', name: 'AMD Ryzen 7 7800X3D', socket: 'AM5', ramType: 'DDR5', power: 120, price: 10490000, fps: 210 }
+            ],
+            gpu: [
+                { id: 'g1', name: 'NVIDIA RTX 3060 12GB', power: 170, price: 7290000, fps: 110 },
+                { id: 'g2', name: 'NVIDIA RTX 4060 Ti 8GB', power: 160, price: 10990000, fps: 155 },
+                { id: 'g3', name: 'NVIDIA RTX 4070 Super 12GB', power: 220, price: 17890000, fps: 195 },
+                { id: 'g4', name: 'AMD Radeon RX 6700 XT', power: 230, price: 8490000, fps: 130 }
+            ],
+            main: [
+                { id: 'm1', name: 'ASUS PRIME B660M-K', socket: 'LGA1700', ramType: 'DDR4', price: 2490000 },
+                { id: 'm2', name: 'MSI MAG B760 TOMAHAWK', socket: 'LGA1700', ramType: 'DDR5', price: 5490000 },
+                { id: 'm3', name: 'GIGABYTE B550M AORUS ELITE', socket: 'AM4', ramType: 'DDR4', price: 2890000 },
+                { id: 'm4', name: 'ASROCK B650M PRO RS', socket: 'AM5', ramType: 'DDR5', price: 3990000 }
+            ],
+            ram: [
+                { id: 'r1', name: '16GB (2x8GB) DDR4 3200MHz', ramType: 'DDR4', price: 990000 },
+                { id: 'r2', name: '32GB (2x16GB) DDR4 3600MHz', ramType: 'DDR4', price: 1890000 },
+                { id: 'r3', name: '32GB (2x16GB) DDR5 6000MHz', ramType: 'DDR5', price: 3190000 }
+            ],
+            psu: [
+                { id: 'p1', name: 'Corsair CV650 650W 80 Plus Bronze', watt: 650, price: 1390000 },
+                { id: 'p2', name: 'MSI MAG A750GL 750W 80 Plus Gold', watt: 750, price: 2690000 },
+                { id: 'p3', name: 'ROG Strix 850W Gold', watt: 850, price: 4290000 }
+            ]
+        };
+
+        const PREBUILTS = [
+            {
+                name: 'CYBER GTA5VN ENTRY 1080P',
+                price: 11990000,
+                specs: 'Core i5 12400F | RTX 3060 12GB | 16GB RAM | 500GB SSD',
+                fps: '110-130 FPS',
+                badge: 'TỐI ƯU GIÁ RẺ'
+            },
+            {
+                name: 'CYBER COMBAT PRO 144Hz',
+                price: 21490000,
+                specs: 'Ryzen 7 7800X3D | RTX 4060 Ti | 32GB DDR5 | 1TB NVMe',
+                fps: '170-200 FPS',
+                badge: 'CHUẨN PVP'
+            },
+            {
+                name: 'CYBER GODLIKE 4K GRAPHICS',
+                price: 36990000,
+                specs: 'Core i7 14700K | RTX 4070 Super | 32GB DDR5 | Water Cooling',
+                fps: '220+ FPS ULTRA',
+                badge: 'SUPER ENB GRAPHICS'
+            }
+        ];
+
+        /* --- STATE MANAGEMENT --- */
+        let currentBuild = { cpu: null, gpu: null, main: null, ram: null, psu: null };
+        let cart = [];
+
+        /* --- INIT --- */
+        window.onload = function() {
+            renderBuilderOptions();
+            renderPrebuilts();
+            setupKeybindingListeners();
+        };
+
+        /* --- NAVIGATION TABS --- */
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            
+            // Close mobile menu
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        /* --- BUILDER LOGIC --- */
+        function renderBuilderOptions() {
+            const container = document.getElementById('components-selector-list');
+            container.innerHTML = '';
+
+            const categories = [
+                { key: 'cpu', label: '1. Bộ Vi Xử Lý (CPU)', icon: 'fa-microchip' },
+                { key: 'main', label: '2. Bo Mạch Chủ (Mainboard)', icon: 'fa-chess-board' },
+                { key: 'gpu', label: '3. Card Màn Hình (GPU)', icon: 'fa-tv' },
+                { key: 'ram', label: '4. Bộ Nhớ Trong (RAM)', icon: 'fa-memory' },
+                { key: 'psu', label: '5. Nguồn Máy Tính (PSU)', icon: 'fa-bolt' }
+            ];
+
+            categories.forEach(cat => {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'bg-cyber-card border border-cyber-border rounded-xl p-4 space-y-3';
+                
+                let optionsHtml = COMPONENTS[cat.key].map(item => `
+                    <option value="${item.id}">
+                        ${item.name} - ${item.price.toLocaleString('vi-VN')} VNĐ
+                    </option>
+                `).join('');
+
+                groupDiv.innerHTML = `
+                    <label class="block font-orbitron text-sm font-bold text-white flex items-center justify-between">
+                        <span><i class="fa-solid ${cat.icon} text-cyber-cyan mr-2"></i>${cat.label}</span>
+                    </label>
+                    <select onchange="selectComponent('${cat.key}', this.value)" class="w-full bg-cyber-darker border border-cyber-border rounded px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyber-cyan">
+                        <option value="">-- Chọn ${cat.label} --</option>
+                        ${optionsHtml}
+                    </select>
+                `;
+                container.appendChild(groupDiv);
+            });
+        }
+
+        function selectComponent(category, id) {
+            const selected = COMPONENTS[category].find(item => item.id === id) || null;
+            currentBuild[category] = selected;
+            updateBuildAnalysis();
+        }
+
+        function updateBuildAnalysis() {
+            let totalPrice = 0;
+            let totalPowerReq = 0;
+            let estFps = 0;
+
+            Object.values(currentBuild).forEach(item => {
+                if(item) {
+                    totalPrice += item.price || 0;
+                    totalPowerReq += item.power || 20;
+                    if(item.fps) estFps += item.fps;
+                }
+            });
+
+            // FPS Averaging
+            if(currentBuild.cpu && currentBuild.gpu) {
+                estFps = Math.round((currentBuild.cpu.fps + currentBuild.gpu.fps) / 1.8);
+            }
+
+            // Update UI Total & FPS
+            document.getElementById('total-price').innerText = totalPrice.toLocaleString('vi-VN') + ' VNĐ';
+            document.getElementById('fps-badge').innerText = estFps + ' FPS';
+            document.getElementById('fps-bar').style.width = Math.min((estFps / 240) * 100, 100) + '%';
+
+            // Socket Check
+            const socketEl = document.getElementById('compat-socket');
+            if(currentBuild.cpu && currentBuild.main) {
+                const match = currentBuild.cpu.socket === currentBuild.main.socket;
+                socketEl.className = `flex items-center justify-between text-xs font-rajdhani p-2.5 rounded ${match ? 'bg-green-950/40 text-cyber-green border border-green-500/30' : 'bg-red-950/40 text-red-400 border border-red-500/30'}`;
+                socketEl.innerHTML = `<span><i class="fa-solid fa-plug mr-2"></i>Socket:</span> <strong>${match ? 'KẾT NỐI CHUẨN (' + currentBuild.cpu.socket + ')' : 'XUNG ĐỘT (' + currentBuild.cpu.socket + ' vs ' + currentBuild.main.socket + ')'}</strong>`;
+            }
+
+            // RAM Type Check
+            const ramEl = document.getElementById('compat-ram');
+            if(currentBuild.main && currentBuild.ram) {
+                const match = currentBuild.main.ramType === currentBuild.ram.ramType;
+                ramEl.className = `flex items-center justify-between text-xs font-rajdhani p-2.5 rounded ${match ? 'bg-green-950/40 text-cyber-green border border-green-500/30' : 'bg-red-950/40 text-red-400 border border-red-500/30'}`;
+                ramEl.innerHTML = `<span><i class="fa-solid fa-memory mr-2"></i>Chuẩn RAM:</span> <strong>${match ? 'TƯƠNG THÍCH (' + currentBuild.ram.ramType + ')' : 'KHÔNG TƯƠNG THÍCH'}</strong>`;
+            }
+
+            // PSU Power Check
+            const psuEl = document.getElementById('compat-power');
+            if(currentBuild.psu) {
+                const isEnough = currentBuild.psu.watt >= totalPowerReq + 100;
+                psuEl.className = `flex items-center justify-between text-xs font-rajdhani p-2.5 rounded ${isEnough ? 'bg-green-950/40 text-cyber-green border border-green-500/30' : 'bg-yellow-950/40 text-cyber-yellow border border-yellow-500/30'}`;
+                psuEl.innerHTML = `<span><i class="fa-solid fa-bolt mr-2 font-bold"></i>Công Suất Nguồn:</span> <strong>${currentBuild.psu.watt}W / Cần ~${totalPowerReq + 100}W</strong>`;
+            }
+        }
+
+        function resetBuilder() {
+            currentBuild = { cpu: null, gpu: null, main: null, ram: null, psu: null };
+            renderBuilderOptions();
+            updateBuildAnalysis();
+        }
+
+        /* --- PREBUILT CATALOG --- */
+        function renderPrebuilts() {
+            const grid = document.getElementById('prebuilt-grid');
+            grid.innerHTML = PREBUILTS.map(item => `
+                <div class="bg-cyber-card border border-cyber-border rounded-xl p-6 space-y-4 flex flex-col justify-between hover:border-cyber-pink transition">
+                    <div>
+                        <span class="px-2.5 py-1 bg-cyber-pink/20 text-cyber-pink text-[10px] font-orbitron font-bold rounded uppercase">${item.badge}</span>
+                        <h3 class="font-orbitron font-bold text-lg text-white mt-2">${item.name}</h3>
+                        <p class="text-xs font-rajdhani text-slate-400 mt-2 bg-cyber-darker p-3 rounded border border-cyber-border">${item.specs}</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between font-orbitron">
+                            <span class="text-xs text-slate-400">FPS GTA5VN:</span>
+                            <span class="text-sm font-bold text-cyber-yellow">${item.fps}</span>
+                        </div>
+                        <div class="flex items-center justify-between font-orbitron">
+                            <span class="text-xs text-slate-400">GIÁ BÁN:</span>
+                            <span class="text-lg font-black text-cyber-green">${item.price.toLocaleString('vi-VN')} VNĐ</span>
+                        </div>
+                        <button onclick="addToCart('${item.name}', ${item.price})" class="w-full clip-cyber-btn bg-cyber-cyan hover:bg-cyan-400 text-black font-orbitron font-bold py-2.5 text-xs transition">
+                            <i class="fa-solid fa-cart-plus mr-1"></i> MUA DÀN PC NÀY
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* --- FEATURE 2: PVP KEYBINDING TRAINER --- */
+        let lastKeyPressTime = 0;
+        let comboScore = 0;
+
+        function setupKeybindingListeners() {
+            window.addEventListener('keydown', (e) => {
+                const key = e.key.toUpperCase();
+                const activeTab = document.getElementById('tab-pvp-trainer');
+                if(activeTab.classList.contains('hidden')) return;
+
+                highlightKeyCap(key);
+                processComboInput(key);
+            });
+
+            window.addEventListener('mousedown', (e) => {
+                const activeTab = document.getElementById('tab-pvp-trainer');
+                if(activeTab.classList.contains('hidden')) return;
+                
+                highlightKeyCap('Mouse');
+                processComboInput('CLICK');
+            });
+        }
+
+        function highlightKeyCap(keyName) {
+            let targetId = '';
+            if(['W', 'A', 'S', 'D'].includes(keyName)) targetId = `key-${keyName}`;
+            if(keyName === 'SHIFT') targetId = 'key-Shift';
+            if(keyName === 'Mouse' || keyName === 'CLICK') targetId = 'key-Mouse';
+
+            if(targetId) {
+                const el = document.getElementById(targetId);
+                if(el) {
+                    el.classList.add('border-cyber-pink', 'text-cyber-pink', 'bg-cyber-pink/20');
+                    setTimeout(() => {
+                        el.classList.remove('border-cyber-pink', 'text-cyber-pink', 'bg-cyber-pink/20');
+                    }, 200);
+                }
+            }
+        }
+
+        function processComboInput(inputLabel) {
+            const now = performance.now();
+            let latency = 0;
+            if(lastKeyPressTime > 0) {
+                latency = Math.round(now - lastKeyPressTime);
+                document.getElementById('reaction-ms').innerText = latency + ' ms';
+            }
+            lastKeyPressTime = now;
+
+            const logEl = document.getElementById('key-log');
+            logEl.innerText = `Đã bấm: ${inputLabel} | Độ trễ nhịp: ${latency > 0 ? latency + 'ms' : '0ms'}`;
+
+            if(inputLabel === 'CLICK' || inputLabel === 'SHIFT') {
+                comboScore++;
+                document.getElementById('combo-count').innerText = comboScore;
+                
+                // Update Rank
+                const rankEl = document.getElementById('combat-rank');
+                if(comboScore >= 20) rankEl.innerText = 'BÁ CHỦ PVP THÁI (Godlike)';
+                else if(comboScore >= 10) rankEl.innerText = 'TAY CHÉM SÁT THỦ (Master)';
+                else if(comboScore >= 5) rankEl.innerText = 'THỢ CHÉM CỨNG (Advanced)';
+            }
+        }
+
+        function resetTrainer() {
+            comboScore = 0;
+            lastKeyPressTime = 0;
+            document.getElementById('combo-count').innerText = '0';
+            document.getElementById('reaction-ms').innerText = '-- ms';
+            document.getElementById('combat-rank').innerText = 'Tập Sự (Novice)';
+            document.getElementById('key-log').innerText = 'Đã làm mới phòng tập!';
+        }
+
+        /* --- CART LOGIC --- */
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+            toggleCartModal();
+        }
+
+        function addCurrentBuildToCart() {
+            let price = 0;
+            Object.values(currentBuild).forEach(i => { if(i) price += i.price; });
+            if(price === 0) {
+                alert('Vui lòng chọn ít nhất 1 linh kiện!');
+                return;
+            }
+            addToCart('Cấu Hình AI Build Tùy Chỉnh', price);
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-badge').innerText = cart.length;
+            const itemsContainer = document.getElementById('cart-items');
+            let total = 0;
+
+            itemsContainer.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="flex items-center justify-between p-3 bg-cyber-darker rounded border border-cyber-border text-xs font-rajdhani">
+                        <span class="font-bold text-white">${item.name}</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyber-green font-bold">${item.price.toLocaleString('vi-VN')} VNĐ</span>
+                            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cart-total').innerText = total.toLocaleString('vi-VN') + ' VNĐ';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCartModal() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+        }
+
+        function checkoutSimulated() {
+            if(cart.length === 0) {
+                alert('Giỏ hàng trống!');
+                return;
+            }
+            alert('Đơn hàng giả lập thành công! Tham gia Discord https://discord.gg/zXXNz5qrA7 để nhận báo giá thực tế.');
+            cart = [];
+            updateCartUI();
+            toggleCartModal();
+        }
+
+        /* --- AI CHATBOT LOGIC --- */
+        function toggleChat() {
+            document.getElementById('chat-modal').classList.toggle('hidden');
+        }
+
+        function sendQuickMsg(txt) {
+            document.getElementById('chat-input').value = txt;
+            sendChatMessage();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const txt = input.value.trim();
+            if(!txt) return;
+
+            const msgContainer = document.getElementById('chat-messages');
+            
+            // Append User Msg
+            msgContainer.innerHTML += `
+                <div class="text-right">
+                    <span class="inline-block bg-cyber-pink/20 border border-cyber-pink/40 text-white p-2.5 rounded-lg text-left max-w-[85%]">
+                        ${txt}
+                    </span>
+                </div>
+            `;
+            input.value = '';
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+
+            // Generate AI Response
+            setTimeout(() => {
+                let aiReply = "Tôi có thể giúp bạn tối ưu PC, cài ReShade/ENB hoặc chia sẻ mẹo PvP Chém Nách Thái! Bạn có thể gia nhập Discord cộng đồng tại: https://discord.gg/zXXNz5qrA7";
+                
+                const lower = txt.toLowerCase();
+                if(lower.includes('reshade') || lower.includes('enb') || lower.includes('graphics')) {
+                    aiReply = "Để mod Graphics GTA5VN mượt: Cài ReShade preset PvP, tắt Motion Blur và giới hạn FPS bằng Hz màn hình. Tham khảo Tab 'Mod Graphics' nhé!";
+                } else if(lower.includes('thái') || lower.includes('chém') || lower.includes('pvp')) {
+                    aiReply = "Tuyệt kỹ Chém Nách Thái sử dụng combo W + A/D + Shift Dodge hủy animation. Bạn có thể luyện tập ngay tại Tab 'PvP Trainer'!";
+                } else if(lower.includes('discord') || lower.includes('link')) {
+                    aiReply = "Link Discord chính thức của cộng đồng: https://discord.gg/zXXNz5qrA7 (Click tại Header hoặc Footer để truy cập).";
+                }
+
+                msgContainer.innerHTML += `
+                    <div class="text-left">
+                        <span class="inline-block bg-cyber-darker border border-cyber-border text-slate-300 p-2.5 rounded-lg max-w-[85%]">
+                            ${aiReply}
+                        </span>
+                    </div>
+                `;
+                msgContainer.scrollTop = msgContainer.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
